@@ -130,6 +130,7 @@ var SECTORS = [
 	"IKN & Jalan Tol",
 	"ESG & AMDAL"
 ];
+var MARQUEE_SPEED = 150;
 var VIDEO_ID = "DLnb-pSftRI";
 function Hero() {
 	const { t, locale } = useTrans();
@@ -210,7 +211,7 @@ function Hero() {
 			/* @__PURE__ */ jsx("div", {
 				className: "relative border-t border-white/15",
 				children: /* @__PURE__ */ jsx(Marquee, {
-					speed: 150,
+					speed: MARQUEE_SPEED,
 					className: "py-7",
 					gapClass: "gap-16 pr-16",
 					children: SECTORS.map((s, i) => /* @__PURE__ */ jsxs("span", {
@@ -290,7 +291,7 @@ function ClientMarquee({ clients }) {
 				})]
 			}) })
 		}), /* @__PURE__ */ jsx(Marquee, {
-			speed: 150,
+			speed: MARQUEE_SPEED,
 			reverse: true,
 			className: "pb-14 pt-10",
 			gapClass: "gap-5 pr-5",
@@ -632,4 +633,4 @@ function Home({ services, menu, insights, clients }) {
 //#endregion
 export { Home as default };
 
-//# sourceMappingURL=Home-BfEIA4Ii.js.map
+//# sourceMappingURL=Home-DjjlQtvb.js.map

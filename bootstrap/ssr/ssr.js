@@ -35,7 +35,7 @@ var renderPage = (page) => createInertiaApp({
 		"./Pages/Clients.jsx": () => import("./assets/Clients-snWINOJP.js"),
 		"./Pages/Contact.jsx": () => import("./assets/Contact-BCKW5qqe.js"),
 		"./Pages/Gallery.jsx": () => import("./assets/Gallery-lc-zJ8gw.js"),
-		"./Pages/Home.jsx": () => import("./assets/Home-BfEIA4Ii.js"),
+		"./Pages/Home.jsx": () => import("./assets/Home-DjjlQtvb.js"),
 		"./Pages/Insights/Index.jsx": () => import("./assets/Index-Cgn8gHwm.js"),
 		"./Pages/Insights/Show.jsx": () => import("./assets/Show-DLL4n532.js"),
 		"./Pages/Services/Index.jsx": () => import("./assets/Index-CibJ7tQL.js"),

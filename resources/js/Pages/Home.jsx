@@ -13,6 +13,9 @@ import { useTrans, localizedPath } from '../hooks/useTrans'
 
 const SECTORS = ['Pertambangan Batubara', 'Infrastruktur', 'Bendungan', 'Energi', 'Tambang Bawah Tanah', 'Tambang Terbuka', 'IKN & Jalan Tol', 'ESG & AMDAL']
 
+// Kecepatan marquee (px/detik) — dipakai hero & klien agar sama persis.
+const MARQUEE_SPEED = 150
+
 const VIDEO_ID = 'DLnb-pSftRI'
 
 function Hero() {
@@ -68,7 +71,7 @@ function Hero() {
             </div>
 
             <div className="relative border-t border-white/15">
-                <Marquee speed={150} className="py-7" gapClass="gap-16 pr-16">
+                <Marquee speed={MARQUEE_SPEED} className="py-7" gapClass="gap-16 pr-16">
                     {SECTORS.map((s, i) => (
                         <span key={i} className="flex items-center gap-16 whitespace-nowrap font-mono text-xs uppercase tracking-[0.25em] text-white/60">
                             {s}
@@ -143,7 +146,7 @@ function ClientMarquee({ clients }) {
                     </div>
                 </Reveal>
             </div>
-            <Marquee speed={150} reverse className="pb-14 pt-10" gapClass="gap-5 pr-5">
+            <Marquee speed={MARQUEE_SPEED} reverse className="pb-14 pt-10" gapClass="gap-5 pr-5">
                 {clients.map((c, i) => (
                     <ClientTile key={c.id} c={c} n={i} />
                 ))}
