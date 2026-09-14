@@ -1,4 +1,4 @@
-import { i as useTrans, r as localizedPath, t as PublicLayout } from "./PublicLayout-B0huDJIh.js";
+import { i as useTrans, r as localizedPath, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
 import { t as Reveal } from "./Reveal-Qg1-elCF.js";
 import { t as PageHero } from "./PageHero-BMep523h.js";
 import { a as INSIGHT_IMAGES, c as alt } from "./media-BkzI3eDn.js";
@@ -82,4 +82,4 @@ function InsightsIndex({ insights }) {
 //#endregion
 export { InsightsIndex as default };
 
-//# sourceMappingURL=Index-Cgn8gHwm.js.map
+//# sourceMappingURL=Index-D_SNqnw4.js.map

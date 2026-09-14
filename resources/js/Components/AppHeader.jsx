@@ -50,7 +50,7 @@ export default function AppHeader() {
                 <div
                     className={`mx-auto flex w-full items-center justify-between gap-3 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         floating
-                            ? 'mt-6 max-w-[70rem] rounded-lg border border-black/10 bg-white/50 px-4 py-3 shadow-lg shadow-black/5 sm:px-5'
+                            ? 'mt-3 max-w-[90%] rounded-lg border border-black/10 bg-white/50 px-4 py-3 shadow-lg shadow-black/5 sm:mt-6 sm:max-w-[70rem] sm:px-5'
                             : 'mt-0 max-w-full rounded-none border-b border-black/10 bg-white/85 px-5 py-4 sm:px-8'
                     }`}
                 >

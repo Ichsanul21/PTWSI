@@ -17,7 +17,7 @@ var renderPage = (page) => createInertiaApp({
 	page,
 	render: ReactDOMServer.renderToString,
 	resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, /* #__PURE__ */ Object.assign({
-		"./Pages/About.jsx": () => import("./assets/About-Pr289PEM.js"),
+		"./Pages/About.jsx": () => import("./assets/About-D59yY12Y.js"),
 		"./Pages/Admin/Clients/Index.jsx": () => import("./assets/Index-GsX8SpsQ.js"),
 		"./Pages/Admin/Dashboard.jsx": () => import("./assets/Dashboard-Bt7-24Gh.js"),
 		"./Pages/Admin/Enquiries/Index.jsx": () => import("./assets/Index-Qo5pSgQe.js"),
@@ -32,14 +32,14 @@ var renderPage = (page) => createInertiaApp({
 		"./Pages/Admin/Settings/Edit.jsx": () => import("./assets/Edit-BVgyiyTw.js"),
 		"./Pages/Admin/TestMenu/Categories.jsx": () => import("./assets/Categories-Co-pyEHy.js"),
 		"./Pages/Admin/TestMenu/Items.jsx": () => import("./assets/Items-DfljEDqh.js"),
-		"./Pages/Clients.jsx": () => import("./assets/Clients-snWINOJP.js"),
-		"./Pages/Contact.jsx": () => import("./assets/Contact-BCKW5qqe.js"),
-		"./Pages/Gallery.jsx": () => import("./assets/Gallery-lc-zJ8gw.js"),
-		"./Pages/Home.jsx": () => import("./assets/Home-DjjlQtvb.js"),
-		"./Pages/Insights/Index.jsx": () => import("./assets/Index-Cgn8gHwm.js"),
-		"./Pages/Insights/Show.jsx": () => import("./assets/Show-DLL4n532.js"),
-		"./Pages/Services/Index.jsx": () => import("./assets/Index-CibJ7tQL.js"),
-		"./Pages/Services/Show.jsx": () => import("./assets/Show-CsLMXobE.js")
+		"./Pages/Clients.jsx": () => import("./assets/Clients-gogDr9ny.js"),
+		"./Pages/Contact.jsx": () => import("./assets/Contact-D1XLs42w.js"),
+		"./Pages/Gallery.jsx": () => import("./assets/Gallery-DeDwlmBv.js"),
+		"./Pages/Home.jsx": () => import("./assets/Home-CwLk0IPR.js"),
+		"./Pages/Insights/Index.jsx": () => import("./assets/Index-D_SNqnw4.js"),
+		"./Pages/Insights/Show.jsx": () => import("./assets/Show-CGwZxzsh.js"),
+		"./Pages/Services/Index.jsx": () => import("./assets/Index-B98jdoM-.js"),
+		"./Pages/Services/Show.jsx": () => import("./assets/Show-0HHcZtTM.js")
 	})),
 	setup: ({ App, props }) => /* @__PURE__ */ jsx(App, { ...props })
 });

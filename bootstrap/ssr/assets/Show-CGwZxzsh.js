@@ -1,4 +1,4 @@
-import { i as useTrans, n as Button, r as localizedPath, t as PublicLayout } from "./PublicLayout-B0huDJIh.js";
+import { i as useTrans, n as Button, r as localizedPath, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
 import { a as INSIGHT_IMAGES } from "./media-BkzI3eDn.js";
 import { t as Seo } from "./Seo-DAd7HCP1.js";
 import { Link } from "@inertiajs/react";
@@ -123,4 +123,4 @@ function InsightShow({ post, related }) {
 //#endregion
 export { InsightShow as default };
 
-//# sourceMappingURL=Show-DLL4n532.js.map
+//# sourceMappingURL=Show-CGwZxzsh.js.map

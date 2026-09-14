@@ -1,4 +1,4 @@
-import { i as useTrans, r as localizedPath, t as PublicLayout } from "./PublicLayout-B0huDJIh.js";
+import { i as useTrans, r as localizedPath, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
 import { t as Reveal } from "./Reveal-Qg1-elCF.js";
 import { t as SectionHeading } from "./SectionHeading-DZApisFk.js";
 import { t as PageHero } from "./PageHero-BMep523h.js";
@@ -153,4 +153,4 @@ function About({ services }) {
 //#endregion
 export { About as default };
 
-//# sourceMappingURL=About-Pr289PEM.js.map
+//# sourceMappingURL=About-D59yY12Y.js.map

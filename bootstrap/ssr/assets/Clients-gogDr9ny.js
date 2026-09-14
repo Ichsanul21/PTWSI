@@ -1,4 +1,4 @@
-import { i as useTrans, t as PublicLayout } from "./PublicLayout-B0huDJIh.js";
+import { i as useTrans, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
 import { t as Reveal } from "./Reveal-Qg1-elCF.js";
 import { t as SectionHeading } from "./SectionHeading-DZApisFk.js";
 import { t as PageHero } from "./PageHero-BMep523h.js";
@@ -160,4 +160,4 @@ function Clients({ clients, projects }) {
 //#endregion
 export { Clients as default };
 
-//# sourceMappingURL=Clients-snWINOJP.js.map
+//# sourceMappingURL=Clients-gogDr9ny.js.map
