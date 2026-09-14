@@ -1,0 +1,226 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.jsx';
+@source '../**/*.tsx';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'Rubik', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
+
+    --color-ink: #082338;
+    --color-ink-700: #0e3a5c;
+    --color-cream: #f9faf9;
+    --color-mist: #d0d7cf;
+    --color-fog: #5e615d;
+    --color-card: #e3e7e2;
+
+    --color-brand-50: #eef6fb;
+    --color-brand-100: #d7eaf6;
+    --color-brand-200: #aed6ee;
+    --color-brand-300: #7abde3;
+    --color-brand-400: #47a2d8;
+    --color-brand-500: #1e8acb;
+    --color-brand-600: #005ca5;
+    --color-brand-700: #004b87;
+    --color-brand-800: #0b3c64;
+    --color-brand-900: #0a2f4f;
+    --color-brand-950: #061e35;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-white font-sans text-ink antialiased;
+    }
+
+    ::selection {
+        background-color: var(--color-brand-600);
+        color: #fff;
+    }
+}
+
+@layer components {
+    .container-site {
+        @apply mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-12;
+    }
+
+    .nav-shell {
+        @apply mx-auto w-full max-w-[70rem] px-4 sm:px-6;
+    }
+
+    .section-pad {
+        padding-block: clamp(5rem, 8vw, 7.5rem);
+    }
+
+    .display {
+        @apply font-bold leading-[1.02] tracking-[-0.02em] text-ink;
+        font-size: clamp(2.75rem, 7.5vw, 6rem);
+    }
+
+    .display-xl {
+        @apply font-bold leading-[1.05] tracking-[-0.015em] text-ink;
+        font-size: clamp(2.1rem, 4.6vw, 3.9rem);
+    }
+
+    .display-lg {
+        @apply font-bold leading-[1.1] tracking-[-0.01em] text-ink;
+        font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+    }
+
+    .kicker {
+        @apply font-mono text-xs font-medium uppercase tracking-[0.18em];
+    }
+
+    .divider-line {
+        @apply h-px w-full bg-ink/15;
+    }
+
+    .dot-grid {
+        background-image: radial-gradient(rgba(10, 0, 23, 0.08) 1px, transparent 1px);
+        background-size: 12px 12px;
+    }
+
+    .dot-grid-light {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        background-size: 12px 12px;
+    }
+}
+
+@layer utilities {
+    .marquee-track {
+        animation: marquee 30s linear infinite;
+        will-change: transform;
+    }
+
+    .marquee-paused:hover .marquee-track,
+    .marquee-paused:hover .marquee-track-reverse {
+        animation-play-state: paused;
+    }
+
+    .marquee-track-reverse {
+        animation: marquee-reverse 28s linear infinite;
+        will-change: transform;
+    }
+
+    .animate-menu-in {
+        animation: menu-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .animate-dot-ping {
+        animation: dot-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .kenburns {
+        animation: kenburns 24s ease-in-out infinite alternate;
+        will-change: transform;
+    }
+
+    .yt-cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        aspect-ratio: 16 / 9;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        border: 0;
+    }
+
+    .marquee-mask {
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        scrollbar-width: none;
+    }
+
+    .hero-overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+        background-image: linear-gradient(rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 0.6));
+    }
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marquee-reverse {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes dot-ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    75%,
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+@keyframes kenburns {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .animate-menu-in,
+    .animate-dot-ping,
+    .kenburns {
+        animation: none;
+    }
+
+    .yt-cover {
+        display: none;
+    }
+
+    .animate-ping {
+        animation: none;
+    }
+}

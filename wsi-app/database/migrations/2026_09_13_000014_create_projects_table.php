@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('projects', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('client_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('name_id');
+            $table->string('name_en')->nullable();
+            $table->string('slug')->unique();
+            $table->string('category')->nullable();
+            $table->string('location_id')->nullable();
+            $table->string('location_en')->nullable();
+            $table->string('year')->nullable();
+            $table->string('client_name')->nullable();
+            $table->text('summary_id')->nullable();
+            $table->text('summary_en')->nullable();
+            $table->json('highlights')->nullable();
+            $table->string('cover')->nullable();
+            $table->json('gallery')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('is_published')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('projects');
+    }
+};
