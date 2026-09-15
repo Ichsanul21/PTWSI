@@ -15,6 +15,8 @@ const SECTORS = [
     { key: 'ikn', label_id: 'IKN', label_en: 'IKN', icon: 'location_city' },
 ]
 
+const FALLBACK_CLIENT_LOGO = '/images/clients/logo-alenkosa-icon.png'
+
 export default function Clients({ clients, projects }) {
     const { locale } = useTrans()
 
@@ -34,8 +36,8 @@ export default function Clients({ clients, projects }) {
                         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {SECTORS.map((sector, i) => (
                                 <div key={sector.key} className="group flex items-center gap-4 rounded-lg border border-ink/10 bg-white p-6 transition-colors duration-200 hover:border-ink/25 hover:shadow-lg hover:shadow-brand-600/10">
-                                    <span className="icon-wrapper-sm">
-                                        <span class="material-symbols-outlined">{sector.icon}</span>
+                                    <span className="icon-wrapper icon-wrapper-sm">
+                                        <span className="material-symbols-outlined">{sector.icon}</span>
                                     </span>
                                     <span className="text-xl font-bold text-ink">{locale === 'en' ? sector.label_en : sector.label_id}</span>
                                 </div>
@@ -60,13 +62,15 @@ export default function Clients({ clients, projects }) {
                                         href={c.website || '#'}
                                         target={c.website ? '_blank' : undefined}
                                         rel="noreferrer"
-                                        className="flex h-24 items-center justify-center rounded-lg border border-ink/10 bg-ink/[0.02] p-4 transition-colors duration-200 hover:border-ink/25"
+                                        title={c.name}
+                                        className="flex h-32 flex-col items-center justify-center gap-2 rounded-xl border border-ink/10 bg-white p-4 text-center transition-all duration-200 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-lg hover:shadow-brand-600/10"
                                     >
                                         {c.logo ? (
-                                            <img src={`/storage/${c.logo}`} alt={c.name} loading="lazy" decoding="async" className="max-h-12 max-w-[70%] object-contain grayscale transition-all hover:grayscale-0" />
+                                            <img src={`/storage/${c.logo}`} alt={c.name} loading="lazy" decoding="async" className="max-h-12 max-w-[70%] object-contain" />
                                         ) : (
-                                            <span className="text-center text-sm font-semibold text-ink/50">{c.name}</span>
+                                            <img src={FALLBACK_CLIENT_LOGO} alt="" aria-hidden="true" loading="lazy" decoding="async" className="h-11 w-11 rounded-lg border border-ink/10 object-contain p-1" />
                                         )}
+                                        <span className="line-clamp-2 text-center text-xs font-bold leading-snug text-ink/70">{c.name}</span>
                                     </a>
                                 ))}
                             </div>

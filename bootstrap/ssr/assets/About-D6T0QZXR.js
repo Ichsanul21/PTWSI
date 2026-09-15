@@ -1,7 +1,6 @@
-import { i as useTrans, r as localizedPath, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
-import { t as Reveal } from "./Reveal-Qg1-elCF.js";
+import { a as useTrans, i as localizedPath, n as Reveal, t as PublicLayout } from "./PublicLayout-Qw7MZTfy.js";
 import { t as SectionHeading } from "./SectionHeading-DZApisFk.js";
-import { t as PageHero } from "./PageHero-BMep523h.js";
+import { t as PageHero } from "./PageHero-BYflm3Wk.js";
 import { c as alt, t as ABOUT_IMAGE } from "./media-BkzI3eDn.js";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -42,10 +41,13 @@ function About({ services }) {
 			lead: locale === "en" ? "An internationally standardised geomechanics, soil & rock testing laboratory, on target for the Kalimantan mining sector." : "Laboratorium pengujian geomekanika, tanah & batuan berstandar internasional, tepat sasaran untuk sektor pertambangan Kalimantan.",
 			meta: "0.5036ºS / 117.1214ºE"
 		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section-pad border-t border-ink/10 bg-white",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "container-site",
+		/* @__PURE__ */ jsxs("section", {
+			className: "section-pad relative overflow-hidden border-t border-ink/10 bg-white",
+			children: [/* @__PURE__ */ jsx("div", {
+				className: "dot-grid pointer-events-none absolute inset-0 opacity-40",
+				"aria-hidden": "true"
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "container-site relative",
 				children: [/* @__PURE__ */ jsxs("div", {
 					className: "grid gap-14 lg:grid-cols-12",
 					children: [/* @__PURE__ */ jsx(Reveal, {
@@ -91,7 +93,7 @@ function About({ services }) {
 						})]
 					})
 				})]
-			})
+			})]
 		}),
 		/* @__PURE__ */ jsx("section", {
 			className: "section-pad section-gradient-subtle border-t border-ink/10",
@@ -116,15 +118,15 @@ function About({ services }) {
 										className: "icon-wrapper",
 										children: [
 											v.key === "accuracy" && /* @__PURE__ */ jsx("span", {
-												class: "material-symbols-outlined",
+												className: "material-symbols-outlined",
 												children: "verified"
 											}),
 											v.key === "speed" && /* @__PURE__ */ jsx("span", {
-												class: "material-symbols-outlined",
+												className: "material-symbols-outlined",
 												children: "bolt"
 											}),
 											v.key === "integrity" && /* @__PURE__ */ jsx("span", {
-												class: "material-symbols-outlined",
+												className: "material-symbols-outlined",
 												children: "shield"
 											})
 										]
@@ -145,11 +147,11 @@ function About({ services }) {
 			})
 		}),
 		/* @__PURE__ */ jsx("section", {
-			className: "section-pad border-t border-ink/10 bg-white",
+			className: "section-pad relative overflow-hidden border-t border-ink/10 section-gradient-subtle",
 			children: /* @__PURE__ */ jsx("div", {
-				className: "container-site",
+				className: "container-site relative",
 				children: /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", {
-					className: "rounded-lg border border-ink/10 bg-ink/[0.02] p-8 sm:p-12",
+					className: "rounded-2xl border border-ink/10 bg-white/80 p-8 shadow-xl shadow-brand-600/5 backdrop-blur sm:p-12",
 					children: [/* @__PURE__ */ jsx(SectionHeading, {
 						eyebrow: t("nav.services"),
 						title: locale === "en" ? "Explore our testing divisions" : "Jelajahi divisi pengujian kami"
@@ -169,4 +171,4 @@ function About({ services }) {
 //#endregion
 export { About as default };
 
-//# sourceMappingURL=About-BDd3WlAn.js.map
+//# sourceMappingURL=About-D6T0QZXR.js.map

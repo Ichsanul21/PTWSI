@@ -1,6 +1,5 @@
 import { Link, usePage } from '@inertiajs/react'
 import { localizedPath, useTrans } from '../hooks/useTrans'
-import Button from './ui/Button'
 
 export default function AppFooter() {
     const { t, locale } = useTrans()
@@ -23,14 +22,8 @@ export default function AppFooter() {
     ]
 
     return (
-        <footer className="bg-white pb-6">
+        <footer className="bg-white pb-6 pt-10">
             <div className="container-site">
-                <div className="flex flex-col gap-8 border-t border-ink/10 py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
-                    <h2 className="display-lg max-w-2xl">{t('footer.question')}</h2>
-                    <Button href={buildHref('/kontak') + '#lead'} variant="primary" size="lg" className="shrink-0 self-start lg:self-auto">
-                        {t('common.cta_quote')}
-                    </Button>
-                </div>
 
                 <div className="rounded-lg bg-ink p-8 text-white sm:p-10">
                     <div className="grid gap-10 lg:grid-cols-12">

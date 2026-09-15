@@ -7,6 +7,8 @@ const variants = {
     light: 'bg-cream text-ink hover:bg-white focus-visible:ring-white',
     underline:
         'bg-transparent text-ink underline decoration-ink/30 underline-offset-8 hover:decoration-ink focus-visible:ring-ink/20',
+    underlineLight:
+        'bg-transparent text-white underline decoration-white/40 underline-offset-8 hover:decoration-white focus-visible:ring-white/50',
 }
 
 const sizes = {

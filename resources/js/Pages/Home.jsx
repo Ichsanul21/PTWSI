@@ -16,6 +16,8 @@ const SECTORS = ['Pertambangan Batubara', 'Infrastruktur', 'Bendungan', 'Energi'
 // Kecepatan marquee (px/detik) — dipakai hero & klien agar sama persis.
 const MARQUEE_SPEED = 150
 
+const FALLBACK_CLIENT_LOGO = '/images/clients/logo-alenkosa-icon.png'
+
 const VIDEO_ID = 'DLnb-pSftRI'
 
 function Hero() {
@@ -92,8 +94,10 @@ function Stats() {
     if (!stats.length) return null
 
     return (
-        <section className="bg-ink">
-            <div className="container-site">
+        <section className="relative overflow-hidden bg-ink">
+            <div className="dot-grid-light pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
+            <div className="pointer-events-none absolute -top-24 left-1/3 h-64 w-[36rem] max-w-none rounded-full bg-brand-600/20 blur-3xl" aria-hidden="true" />
+            <div className="container-site relative">
                 <div className="grid gap-10 py-14 sm:grid-cols-3 lg:py-16">
                     {stats.map((s, i) => (
                         <Reveal key={i} delay={i * 120}>
@@ -117,13 +121,17 @@ function ClientTile({ c, n }) {
             href={c.website || '#'}
             target={c.website ? '_blank' : undefined}
             rel="noreferrer"
-            className="group flex h-24 w-56 shrink-0 items-center gap-4 rounded-lg border border-ink/10 bg-white px-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl hover:shadow-brand-600/10"
+            title={c.name}
+            className="group flex h-28 w-64 shrink-0 items-center gap-3 rounded-xl border border-ink/10 bg-white px-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl hover:shadow-brand-600/10"
         >
-            <span className="font-mono text-xs text-brand-600">{String(n + 1).padStart(2, '0')}</span>
+            <span className="shrink-0 font-mono text-xs text-brand-600">{String(n + 1).padStart(2, '0')}</span>
             {c.logo ? (
-                <img src={`/storage/${c.logo}`} alt={c.name} loading="lazy" decoding="async" className="max-h-10 max-w-[70%] object-contain grayscale transition-all duration-300 group-hover:grayscale-0" />
+                <img src={`/storage/${c.logo}`} alt={c.name} loading="lazy" decoding="async" className="max-h-12 max-w-[72%] object-contain" />
             ) : (
-                <span className="text-sm font-bold leading-snug text-ink/60 transition-colors group-hover:text-ink">{c.name}</span>
+                <>
+                    <img src={FALLBACK_CLIENT_LOGO} alt="" aria-hidden="true" loading="lazy" decoding="async" className="h-10 w-10 shrink-0 rounded-lg border border-ink/10 object-contain p-1" />
+                    <span className="text-sm font-bold leading-snug text-ink/70 transition-colors group-hover:text-ink">{c.name}</span>
+                </>
             )}
         </a>
     )
@@ -135,8 +143,9 @@ function ClientMarquee({ clients }) {
     if (!clients?.length) return null
 
     return (
-        <section className="overflow-hidden bg-white">
-            <div className="container-site pt-16">
+        <section className="relative overflow-hidden border-t border-ink/10 section-gradient-subtle">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+            <div className="container-site relative pt-16">
                 <Reveal>
                     <div className="flex flex-wrap items-end justify-between gap-6">
                         <SectionHeading eyebrow={t('nav.clients')} title={t('common.our_clients')} />
@@ -160,8 +169,10 @@ function Services({ services }) {
     const buildHref = (path) => localizedPath(locale, path)
 
     return (
-        <section className="section-pad section-gradient-subtle">
-            <div className="container-site">
+        <section className="section-pad relative overflow-hidden section-gradient-subtle">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+            <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-brand-600/10 blur-3xl" aria-hidden="true" />
+            <div className="container-site relative">
                 <Reveal>
                     <div className="flex flex-wrap items-end justify-between gap-6">
                         <SectionHeading eyebrow={t('nav.services')} title={t('home.services_title')} />
@@ -182,7 +193,7 @@ function Services({ services }) {
                                     href={buildHref(`/layanan/${s.slug}`)}
                                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-xl"
                                 >
-                                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                                    <div className="relative aspect-[16/10] w-full overflow-hidden">
                                         {imgSrc ? (
                                             <img src={imgSrc} alt={imgAlt} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                         ) : (
@@ -190,17 +201,17 @@ function Services({ services }) {
                                                 <ServiceIcon name={s.icon} className="h-12 w-12 text-ink/30" />
                                             </div>
                                         )}
-                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4">
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent p-5">
                                             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/85">{s.standards}</span>
                                         </div>
                                     </div>
-                                    <div className="p-6 flex-1 flex-col">
+                                    <div className="flex flex-1 flex-col p-6">
                                         <span className="font-mono text-sm text-brand-600">{String(i + 1).padStart(2, '0')}</span>
                                         <h3 className="mt-3 text-xl font-bold text-ink transition-colors group-hover:text-brand-600">{name}</h3>
                                         <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/60">{short}</p>
                                     </div>
-                                    <div className="pt-4 flex items-center justify-between">
-                                        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">{s.standards}</span>
+                                    <div className="flex items-center justify-between px-6 pb-6">
+                                        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40 transition-colors group-hover:text-brand-600">Lihat detail</span>
                                         <span className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-300 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white">
                                             <svg className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M5 12h14M13 6l6 6-6 6" />
@@ -220,6 +231,7 @@ function Services({ services }) {
 const WHYS = [
     {
         no: '01',
+        icon: 'science',
         title_id: 'Spesialis Geomekanika Murni',
         title_en: 'Pure Geomechanics Specialists',
         body_id: 'Fokus penuh pada tanah, batuan, dan air. Setiap hasil uji terdokumentasi dan dapat dipertanggungjawabkan.',
@@ -227,6 +239,7 @@ const WHYS = [
     },
     {
         no: '02',
+        icon: 'verified',
         title_id: 'Standar Nasional & Internasional',
         title_en: 'National & International Standards',
         body_id: 'Setiap prosedur mengacu pada SNI, ASTM, AASHTO, JIS, atau ISRM sesuai kebutuhan proyek Anda.',
@@ -234,6 +247,7 @@ const WHYS = [
     },
     {
         no: '03',
+        icon: 'bolt',
         title_id: 'Cepat, Terjangkau, Dekat Tambang',
         title_en: 'Fast, Affordable, Close to the Mine',
         body_id: 'Dari Samarinda, sampel Anda tidak perlu dikirim ke Jawa. Hemat biaya logistik dan terima hasil lebih cepat.',
@@ -246,20 +260,24 @@ function Why() {
     const { locale: lc } = usePage().props
 
     return (
-        <section className="section-pad border-t border-ink/10 bg-white">
-            <div className="container-site">
+        <section className="section-pad relative overflow-hidden border-t border-ink/10 section-gradient-subtle">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+            <div className="pointer-events-none absolute -top-32 right-0 h-80 w-80 rounded-full bg-brand-600/10 blur-3xl" aria-hidden="true" />
+            <div className="container-site relative">
                 <Reveal>
                     <SectionHeading eyebrow={t('nav.about')} title={t('home.why_title')} />
                 </Reveal>
                 <div className="mt-12 grid gap-5 md:grid-cols-3">
                     {WHYS.map((w, i) => (
                         <Reveal key={w.no} delay={i * 120}>
-                            <div className="flex h-full flex-col rounded-lg border border-ink/10 bg-white p-8 transition-colors duration-200 hover:border-ink/25 sm:p-10">
+                            <div className="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-xl hover:shadow-brand-600/10 sm:p-10">
                                 <div className="flex items-center justify-between">
                                     <span className="font-mono text-sm text-brand-600">{w.no}</span>
-                                    <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
+                                    <span className="icon-wrapper">
+                                        <span className="material-symbols-outlined">{w.icon}</span>
+                                    </span>
                                 </div>
-                                <h3 className="mt-10 text-2xl font-bold leading-tight text-ink sm:mt-14">{w[`title_${lc}`]}</h3>
+                                <h3 className="mt-10 text-2xl font-bold leading-tight text-ink sm:mt-12">{w[`title_${lc}`]}</h3>
                                 <p className="mt-4 text-sm leading-relaxed text-ink/60">{w[`body_${lc}`]}</p>
                             </div>
                         </Reveal>
@@ -274,8 +292,9 @@ function FieldStrip() {
     const { locale } = useTrans()
 
     return (
-        <section className="border-t border-ink/10 bg-white">
-            <div className="container-site section-pad">
+        <section className="relative overflow-hidden border-t border-ink/10 bg-white">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+            <div className="container-site section-pad relative">
                 <Reveal>
                     <p className="kicker text-ink/50">
                         {locale === 'en' ? 'From pit to laboratory' : 'Dari lapangan ke laboratorium'}
@@ -306,8 +325,9 @@ function TestMenu({ menu }) {
     if (!menu?.length) return null
 
     return (
-        <section className="section-pad border-t border-ink/10 bg-white">
-            <div className="container-site">
+        <section className="section-pad relative overflow-hidden border-t border-ink/10 bg-white">
+            <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-brand-100/60 blur-3xl" aria-hidden="true" />
+            <div className="container-site relative">
                 <Reveal>
                     <SectionHeading eyebrow={t('section.menu_tests_label')} title={t('common.menu_tests')} />
                 </Reveal>
@@ -372,8 +392,10 @@ function InsightsTeaser({ insights }) {
     if (!insights?.length) return null
 
     return (
-        <section className="section-pad border-t border-ink/10 bg-white">
-            <div className="container-site">
+        <section className="section-pad relative overflow-hidden border-t border-ink/10 section-gradient-subtle">
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+            <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-brand-600/10 blur-3xl" aria-hidden="true" />
+            <div className="container-site relative">
                 <div className="flex flex-wrap items-end justify-between gap-6">
                     <SectionHeading eyebrow={t('nav.insights')} title={t('home.insights_title')} />
                     <Link href={buildHref('/insight')} className="font-mono text-[13px] uppercase tracking-[0.04em] text-ink underline decoration-ink/30 underline-offset-8 transition-colors hover:decoration-ink">
@@ -411,87 +433,6 @@ function InsightsTeaser({ insights }) {
     )
 }
 
-function CtaBand() {
-    const { t, locale } = useTrans()
-    const buildHref = (path) => localizedPath(locale, path)
-    const site = usePage().props.site
-
-    return (
-        <section className="relative overflow-hidden" aria-labelledby="cta-heading">
-            <div className="absolute inset-0 cta-gradient" />
-            <div className="absolute inset-0 dot-grid" />
-            <div className="absolute inset-0">
-                <div className="floating-shape floating-shape-1" />
-                <div className="floating-shape floating-shape-2" />
-                <div className="floating-shape floating-shape-3" />
-            </div>
-            <div className="container-site relative pb-16 pt-16 lg:pb-24 lg:pt-24">
-                <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
-                    <div className="relative max-w-xl">
-                        <Reveal>
-                            <p className="kicker text-white/70">{t('footer.question')}</p>
-                        </Reveal>
-                        <Reveal delay={100}>
-                            <h2 id="cta-heading" className="display-xl mt-4 font-bold text-white">
-                                {locale === 'en' ? 'Ready to start your testing project?' : 'Siap memulai proyek pengujian Anda?'}
-                            </h2>
-                        </Reveal>
-                        <Reveal delay={200}>
-                            <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
-                                {locale === 'en'
-                                    ? 'Tell us your soil, rock, or environmental testing needs. Our team responds within 24 hours on working days.'
-                                    : 'Ceritakan kebutuhan pengujian tanah, batuan, atau lingkungan Anda. Tim kami merespons dalam 1×24 jam pada jam kerja.'}
-                            </p>
-                        </Reveal>
-                        <Reveal delay={300}>
-                            <div className="mt-8 flex flex-wrap items-center gap-4">
-                                <Button href={buildHref('/kontak') + '#lead'} size="lg" variant="light">
-                                    {t('common.cta_quote')}
-                                </Button>
-                                <Button href={buildHref('/layanan')} size="lg" variant="underline">
-                                    {t('common.cta_services')}
-                                </Button>
-                            </div>
-                        </Reveal>
-                    </div>
-                    <div className="relative hidden lg:block">
-                        <Reveal delay={400}>
-                            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                                <svg viewBox="0 0 384 384" className="w-full h-full text-white/10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stopColor="#005ca5" stopOpacity="0.3"/>
-                                            <stop offset="100%" stopColor="#47a2d8" stopOpacity="0.1"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <circle cx="192" cy="192" r="160" fill="url(#grad1)" />
-                                    <g opacity="0.5">
-                                        <path d="M192 80a112 112 0 1 1 0 224 112 112 0 0 1 0-224z" stroke="url(#grad1)" strokeWidth="2" fill="none" strokeDasharray="10,10" />
-                                        <circle cx="192" cy="192" r="70" fill="none" stroke="url(#grad1)" strokeWidth="1.5" />
-                                        <circle cx="192" cy="192" r="40" fill="url(#grad1)" />
-                                    </g>
-                                    <g transform="translate(192, 192)">
-                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
-                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
-                                    </g>
-                                    <g transform="translate(192, 192) rotate(120)">
-                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
-                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
-                                    </g>
-                                    <g transform="translate(192, 192) rotate(240)">
-                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
-                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
-                                    </g>
-                                </svg>
-                            </div>
-                        </Reveal>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
-
 export default function Home({ services, menu, insights, clients }) {
     return (
         <PublicLayout>
@@ -504,7 +445,6 @@ export default function Home({ services, menu, insights, clients }) {
             <FieldStrip />
             <TestMenu menu={menu} />
             <InsightsTeaser insights={insights} />
-            <CtaBand />
         </PublicLayout>
     )
 }

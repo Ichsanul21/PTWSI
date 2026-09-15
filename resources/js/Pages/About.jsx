@@ -47,8 +47,9 @@ export default function About({ services }) {
                 meta="0.5036ºS / 117.1214ºE"
             />
 
-            <section className="section-pad border-t border-ink/10 bg-white">
-                <div className="container-site">
+            <section className="section-pad relative overflow-hidden border-t border-ink/10 bg-white">
+                <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+                <div className="container-site relative">
                     <div className="grid gap-14 lg:grid-cols-12">
                         <Reveal className="lg:col-span-5">
                             <SectionHeading eyebrow={t('nav.about')} title={about[`lead_${locale}`] ?? about.lead_id ?? ''} />
@@ -84,9 +85,9 @@ export default function About({ services }) {
                                     <div className="flex items-center justify-between">
                                         <span className="font-mono text-sm text-brand-600">{String(i + 1).padStart(2, '0')}</span>
                                         <span className="icon-wrapper">
-                                            {v.key === 'accuracy' && <span class="material-symbols-outlined">verified</span>}
-                                            {v.key === 'speed' && <span class="material-symbols-outlined">bolt</span>}
-                                            {v.key === 'integrity' && <span class="material-symbols-outlined">shield</span>}
+                                            {v.key === 'accuracy' && <span className="material-symbols-outlined">verified</span>}
+                                            {v.key === 'speed' && <span className="material-symbols-outlined">bolt</span>}
+                                            {v.key === 'integrity' && <span className="material-symbols-outlined">shield</span>}
                                         </span>
                                     </div>
                                     <h3 className="mt-10 text-2xl font-bold text-ink">{v[`title_${locale}`]}</h3>
@@ -98,10 +99,10 @@ export default function About({ services }) {
                 </div>
             </section>
 
-            <section className="section-pad border-t border-ink/10 bg-white">
-                <div className="container-site">
+            <section className="section-pad relative overflow-hidden border-t border-ink/10 section-gradient-subtle">
+                <div className="container-site relative">
                     <Reveal>
-                        <div className="rounded-lg border border-ink/10 bg-ink/[0.02] p-8 sm:p-12">
+                        <div className="rounded-2xl border border-ink/10 bg-white/80 p-8 shadow-xl shadow-brand-600/5 backdrop-blur sm:p-12">
                             <SectionHeading eyebrow={t('nav.services')} title={locale === 'en' ? 'Explore our testing divisions' : 'Jelajahi divisi pengujian kami'} />
                             <div className="mt-8 flex flex-wrap gap-3">
                                 {services.map((s) => (

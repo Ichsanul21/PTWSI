@@ -1,5 +1,4 @@
-import { i as useTrans, n as Button, r as localizedPath, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
-import { t as Reveal } from "./Reveal-Qg1-elCF.js";
+import { a as useTrans, i as localizedPath, n as Reveal, t as PublicLayout } from "./PublicLayout-Qw7MZTfy.js";
 import { t as SectionHeading } from "./SectionHeading-DZApisFk.js";
 import { t as BlinkDot } from "./BlinkDot-CcE3wAw3.js";
 import { a as INSIGHT_IMAGES, c as alt, s as SERVICE_IMAGES } from "./media-BkzI3eDn.js";
@@ -206,39 +205,10 @@ function ServiceShow({ service, related }) {
 					}, s.slug))
 				})]
 			})
-		}),
-		/* @__PURE__ */ jsxs("section", {
-			className: "relative overflow-hidden border-t border-ink/10",
-			children: [
-				/* @__PURE__ */ jsx("div", { className: "absolute inset-0 cta-gradient" }),
-				/* @__PURE__ */ jsx("div", { className: "absolute inset-0 dot-grid" }),
-				/* @__PURE__ */ jsx("div", {
-					className: "container-site relative pb-24 lg:pb-32",
-					children: /* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", {
-						className: "flex flex-col gap-6 rounded-2xl p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between",
-						children: [/* @__PURE__ */ jsxs("div", {
-							className: "relative z-10",
-							children: [/* @__PURE__ */ jsx("h2", {
-								className: "text-2xl font-bold sm:text-3xl",
-								children: t("common.cta_quote")
-							}), /* @__PURE__ */ jsx("p", {
-								className: "mt-2 text-white/75",
-								children: locale === "en" ? "Tell us your testing needs. We reply within 24 hours." : "Ceritakan kebutuhan pengujian Anda. Kami balas dalam 1×24 jam."
-							})]
-						}), /* @__PURE__ */ jsx(Button, {
-							href: buildHref("/kontak") + "#lead",
-							variant: "light",
-							size: "lg",
-							className: "shrink-0 self-start lg:self-auto",
-							children: locale === "en" ? "Contact the Lab Team" : "Hubungi Tim Lab"
-						})]
-					}) })
-				})
-			]
 		})
 	] });
 }
 //#endregion
 export { ServiceShow as default };
 
-//# sourceMappingURL=Show-dKfrHG2t.js.map
+//# sourceMappingURL=Show-Dm3QQ1aZ.js.map

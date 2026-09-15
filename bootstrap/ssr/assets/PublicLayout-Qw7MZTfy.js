@@ -1,6 +1,6 @@
 import { Link, usePage } from "@inertiajs/react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 //#region resources/js/hooks/useTrans.js
 function useTrans() {
 	const { translations, locale } = usePage().props;
@@ -23,7 +23,8 @@ var variants = {
 	secondary: "bg-ink/5 text-ink hover:bg-ink/10 focus-visible:ring-ink/20",
 	glass: "border border-white/25 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 focus-visible:ring-white/50",
 	light: "bg-cream text-ink hover:bg-white focus-visible:ring-white",
-	underline: "bg-transparent text-ink underline decoration-ink/30 underline-offset-8 hover:decoration-ink focus-visible:ring-ink/20"
+	underline: "bg-transparent text-ink underline decoration-ink/30 underline-offset-8 hover:decoration-ink focus-visible:ring-ink/20",
+	underlineLight: "bg-transparent text-white underline decoration-white/40 underline-offset-8 hover:decoration-white focus-visible:ring-white/50"
 };
 var sizes = {
 	none: "px-0 py-1 text-[13px]",
@@ -222,22 +223,10 @@ function AppFooter() {
 	const brand = usePage().props.site?.brand ?? {};
 	const buildHref = (path) => localizedPath(locale, path);
 	return /* @__PURE__ */ jsx("footer", {
-		className: "bg-white pb-6",
-		children: /* @__PURE__ */ jsxs("div", {
+		className: "bg-white pb-6 pt-10",
+		children: /* @__PURE__ */ jsx("div", {
 			className: "container-site",
-			children: [/* @__PURE__ */ jsxs("div", {
-				className: "flex flex-col gap-8 border-t border-ink/10 py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20",
-				children: [/* @__PURE__ */ jsx("h2", {
-					className: "display-lg max-w-2xl",
-					children: t("footer.question")
-				}), /* @__PURE__ */ jsx(Button, {
-					href: buildHref("/kontak") + "#lead",
-					variant: "primary",
-					size: "lg",
-					className: "shrink-0 self-start lg:self-auto",
-					children: t("common.cta_quote")
-				})]
-			}), /* @__PURE__ */ jsxs("div", {
+			children: /* @__PURE__ */ jsxs("div", {
 				className: "rounded-lg bg-ink p-8 text-white sm:p-10",
 				children: [
 					/* @__PURE__ */ jsxs("div", {
@@ -383,8 +372,214 @@ function AppFooter() {
 						children: t("footer.credits")
 					})
 				]
-			})]
+			})
 		})
+	});
+}
+//#endregion
+//#region resources/js/Components/ui/Reveal.jsx
+var EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+function Reveal({ children, className = "", delay = 0, as: Tag = "div" }) {
+	const ref = useRef(null);
+	const [visible, setVisible] = useState(false);
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const reduceMotion = typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		if (!("IntersectionObserver" in window) || reduceMotion) {
+			setVisible(true);
+			return;
+		}
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					setVisible(true);
+					observer.unobserve(entry.target);
+				}
+			});
+		}, {
+			threshold: .1,
+			rootMargin: "0px 0px -10% 0px"
+		});
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, []);
+	return /* @__PURE__ */ jsx(Tag, {
+		ref,
+		className: `${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${className}`,
+		style: {
+			transitionProperty: "opacity, transform",
+			transitionDuration: "650ms",
+			transitionTimingFunction: EASE,
+			transitionDelay: `${delay}ms`,
+			willChange: visible ? "auto" : "opacity, transform"
+		},
+		children
+	});
+}
+//#endregion
+//#region resources/js/Components/ui/CtaBand.jsx
+function CtaBand({ title, lead }) {
+	const { t, locale } = useTrans();
+	const buildHref = (path) => localizedPath(locale, path);
+	const brand = usePage().props.site?.brand ?? {};
+	const phone = brand.phones?.[0] ?? "";
+	const email = brand.email ?? "";
+	const address = brand[`address_${locale}`] ?? brand.address_id ?? "";
+	const hours = brand.working_hours ?? "";
+	return /* @__PURE__ */ jsxs("section", {
+		className: "relative overflow-hidden",
+		"aria-labelledby": "cta-heading",
+		children: [
+			/* @__PURE__ */ jsx("div", { className: "absolute inset-0 cta-gradient" }),
+			/* @__PURE__ */ jsx("div", { className: "absolute inset-0 dot-grid-light opacity-60" }),
+			/* @__PURE__ */ jsxs("div", {
+				className: "absolute inset-0",
+				children: [
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-1" }),
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-2" }),
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-3" })
+				]
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "container-site relative py-16 lg:py-24",
+				children: /* @__PURE__ */ jsxs("div", {
+					className: "relative grid items-center gap-12 lg:grid-cols-12",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "relative lg:col-span-7",
+						children: [
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 100,
+								children: /* @__PURE__ */ jsx("h2", {
+									id: "cta-heading",
+									className: "display-xl font-bold text-white",
+									children: title ?? (locale === "en" ? "Ready to start your testing project?" : "Siap memulai proyek pengujian Anda?")
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 180,
+								children: /* @__PURE__ */ jsx("p", {
+									className: "mt-6 max-w-lg text-lg leading-relaxed text-white/80",
+									children: lead ?? (locale === "en" ? "Tell us your soil, rock, or environmental testing needs. Our team responds within 24 hours on working days." : "Ceritakan kebutuhan pengujian tanah, batuan, atau lingkungan Anda. Tim kami merespons dalam 1×24 jam pada jam kerja.")
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 240,
+								children: /* @__PURE__ */ jsx("ul", {
+									className: "mt-8 grid gap-3 sm:grid-cols-3",
+									children: (locale === "en" ? [
+										{
+											icon: "schedule",
+											text: "Quote response within 24 hours on working days"
+										},
+										{
+											icon: "verified",
+											text: "SNI · ASTM · AASHTO · ISRM accountable standards"
+										},
+										{
+											icon: "local_shipping",
+											text: "Close to the mine — no need to ship samples to Java"
+										}
+									] : [
+										{
+											icon: "schedule",
+											text: "Respons penawaran 1×24 jam pada jam kerja"
+										},
+										{
+											icon: "verified",
+											text: "Standar SNI · ASTM · AASHTO · ISRM terdokumentasi"
+										},
+										{
+											icon: "local_shipping",
+											text: "Dekat tambang — sampel tak perlu dikirim ke Jawa"
+										}
+									]).map((item) => /* @__PURE__ */ jsxs("li", {
+										className: "flex items-start gap-3 rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur",
+										children: [/* @__PURE__ */ jsx("span", {
+											className: "material-symbols-outlined text-white",
+											children: item.icon
+										}), /* @__PURE__ */ jsx("span", {
+											className: "text-xs font-medium leading-relaxed text-white/90",
+											children: item.text
+										})]
+									}, item.text))
+								})
+							}),
+							/* @__PURE__ */ jsxs(Reveal, {
+								delay: 300,
+								children: [/* @__PURE__ */ jsxs("div", {
+									className: "mt-8 flex flex-wrap items-center gap-4",
+									children: [/* @__PURE__ */ jsx(Button, {
+										href: buildHref("/kontak") + "#lead",
+										size: "lg",
+										variant: "light",
+										children: t("common.cta_quote")
+									}), /* @__PURE__ */ jsx(Button, {
+										href: buildHref("/layanan"),
+										size: "lg",
+										variant: "underlineLight",
+										children: t("common.cta_services")
+									})]
+								}), (phone || email) && /* @__PURE__ */ jsxs("p", {
+									className: "mt-6 font-mono text-xs uppercase tracking-[0.14em] text-white/70",
+									children: [
+										phone && /* @__PURE__ */ jsx("a", {
+											href: `tel:${phone.replace(/-/g, "")}`,
+											className: "underline-offset-4 hover:underline",
+											children: phone
+										}),
+										phone && email && /* @__PURE__ */ jsx("span", {
+											className: "mx-3 text-white/30",
+											children: "·"
+										}),
+										email && /* @__PURE__ */ jsx("a", {
+											href: `mailto:${email}`,
+											className: "underline-offset-4 hover:underline",
+											children: email
+										})
+									]
+								})]
+							})
+						]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "relative lg:col-span-5",
+						children: /* @__PURE__ */ jsx(Reveal, {
+							delay: 350,
+							children: /* @__PURE__ */ jsxs("div", {
+								className: "relative overflow-hidden rounded-2xl border border-white/25 shadow-2xl",
+								children: [
+									/* @__PURE__ */ jsx("img", {
+										src: "/images/lab-soil.jpg",
+										alt: locale === "en" ? "Soil testing in the laboratory" : "Pengujian tanah di laboratorium",
+										loading: "lazy",
+										decoding: "async",
+										className: "aspect-[4/3] w-full object-cover"
+									}),
+									/* @__PURE__ */ jsxs("div", {
+										className: "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent p-6 pt-16",
+										children: [/* @__PURE__ */ jsx("p", {
+											className: "font-mono text-[11px] uppercase tracking-[0.14em] text-white/85",
+											children: locale === "en" ? "Materials testing laboratory · Samarinda" : "Laboratorium pengujian material · Samarinda"
+										}), (address || hours) && /* @__PURE__ */ jsxs("p", {
+											className: "mt-2 line-clamp-2 text-sm leading-relaxed text-white/75",
+											children: [
+												address,
+												address && hours ? " · " : "",
+												hours
+											]
+										})]
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "absolute left-4 top-4 rounded-full border border-white/30 bg-black/40 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-white backdrop-blur",
+										children: locale === "en" ? "24h response" : "Respons 24 jam"
+									})
+								]
+							})
+						})
+					})]
+				})
+			})
+		]
 	});
 }
 //#endregion
@@ -410,7 +605,9 @@ function WhatsAppFloat() {
 }
 //#endregion
 //#region resources/js/Layouts/PublicLayout.jsx
-function PublicLayout({ children }) {
+function PublicLayout({ children, hideCta = false }) {
+	const { url } = usePage();
+	const isContact = url?.includes("/kontak");
 	return /* @__PURE__ */ jsxs("div", {
 		className: "flex min-h-screen flex-col bg-white text-ink",
 		children: [
@@ -419,12 +616,13 @@ function PublicLayout({ children }) {
 				className: "flex-1",
 				children
 			}),
+			!hideCta && !isContact && /* @__PURE__ */ jsx(CtaBand, {}),
 			/* @__PURE__ */ jsx(AppFooter, {}),
 			/* @__PURE__ */ jsx(WhatsAppFloat, {})
 		]
 	});
 }
 //#endregion
-export { useTrans as i, Button as n, localizedPath as r, PublicLayout as t };
+export { useTrans as a, localizedPath as i, Reveal as n, Button as r, PublicLayout as t };
 
-//# sourceMappingURL=PublicLayout-DG3kgI-p.js.map
+//# sourceMappingURL=PublicLayout-Qw7MZTfy.js.map

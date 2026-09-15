@@ -1,10 +1,10 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "resources/js/Components/AppFooter.jsx": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/AppHeader.jsx": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/Seo.jsx": [
     "/build/assets/Seo-DAd7HCP1.js"
@@ -16,19 +16,22 @@
     "/build/assets/BlinkDot-CcE3wAw3.js"
   ],
   "resources/js/Components/ui/Button.jsx": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/ui/CountUp.jsx": [
-    "/build/assets/Home-Bqd_hJ9N.js"
+    "/build/assets/Home-DDtv0_x5.js"
+  ],
+  "resources/js/Components/ui/CtaBand.jsx": [
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/ui/Marquee.jsx": [
-    "/build/assets/Home-Bqd_hJ9N.js"
+    "/build/assets/Home-DDtv0_x5.js"
   ],
   "resources/js/Components/ui/PageHero.jsx": [
-    "/build/assets/PageHero-BMep523h.js"
+    "/build/assets/PageHero-BYflm3Wk.js"
   ],
   "resources/js/Components/ui/Reveal.jsx": [
-    "/build/assets/Reveal-Qg1-elCF.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/ui/SectionHeading.jsx": [
     "/build/assets/SectionHeading-DZApisFk.js"
@@ -37,7 +40,7 @@
     "/build/assets/ServiceIcon-hMszGnNW.js"
   ],
   "resources/js/Components/ui/WhatsAppFloat.jsx": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Components/ui/media.js": [
     "/build/assets/media-BkzI3eDn.js"
@@ -46,10 +49,10 @@
     "/build/assets/AdminLayout-CKOMJvzr.js"
   ],
   "resources/js/Layouts/PublicLayout.jsx": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/Pages/About.jsx": [
-    "/build/assets/About-BDd3WlAn.js"
+    "/build/assets/About-D6T0QZXR.js"
   ],
   "resources/js/Pages/Admin/Clients/Index.jsx": [
     "/build/assets/Index-GsX8SpsQ.js"
@@ -94,31 +97,31 @@
     "/build/assets/Items-DfljEDqh.js"
   ],
   "resources/js/Pages/Clients.jsx": [
-    "/build/assets/Clients-BQjJ2_gC.js"
+    "/build/assets/Clients-BvOE9BfS.js"
   ],
   "resources/js/Pages/Contact.jsx": [
-    "/build/assets/Contact-D1XLs42w.js"
+    "/build/assets/Contact-C5QQU74T.js"
   ],
   "resources/js/Pages/Gallery.jsx": [
-    "/build/assets/Gallery-DeDwlmBv.js"
+    "/build/assets/Gallery-8b3JA39O.js"
   ],
   "resources/js/Pages/Home.jsx": [
-    "/build/assets/Home-Bqd_hJ9N.js"
+    "/build/assets/Home-DDtv0_x5.js"
   ],
   "resources/js/Pages/Insights/Index.jsx": [
-    "/build/assets/Index-D_SNqnw4.js"
+    "/build/assets/Index-DGor22bX.js"
   ],
   "resources/js/Pages/Insights/Show.jsx": [
-    "/build/assets/Show-CGwZxzsh.js"
+    "/build/assets/Show-B7l5RqwE.js"
   ],
   "resources/js/Pages/Services/Index.jsx": [
-    "/build/assets/Index-Bqm9Xghx.js"
+    "/build/assets/Index-CtZ3el6b.js"
   ],
   "resources/js/Pages/Services/Show.jsx": [
-    "/build/assets/Show-dKfrHG2t.js"
+    "/build/assets/Show-Dm3QQ1aZ.js"
   ],
   "resources/js/hooks/useTrans.js": [
-    "/build/assets/PublicLayout-DG3kgI-p.js"
+    "/build/assets/PublicLayout-Qw7MZTfy.js"
   ],
   "resources/js/ssr.jsx": []
 }

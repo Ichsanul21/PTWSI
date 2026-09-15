@@ -1,7 +1,6 @@
-import { i as useTrans, t as PublicLayout } from "./PublicLayout-DG3kgI-p.js";
-import { t as Reveal } from "./Reveal-Qg1-elCF.js";
+import { a as useTrans, n as Reveal, t as PublicLayout } from "./PublicLayout-Qw7MZTfy.js";
 import { t as SectionHeading } from "./SectionHeading-DZApisFk.js";
-import { t as PageHero } from "./PageHero-BMep523h.js";
+import { t as PageHero } from "./PageHero-BYflm3Wk.js";
 import { o as PROJECT_FALLBACKS } from "./media-BkzI3eDn.js";
 import { t as Seo } from "./Seo-DAd7HCP1.js";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -44,6 +43,7 @@ var SECTORS = [
 		icon: "location_city"
 	}
 ];
+var FALLBACK_CLIENT_LOGO = "/images/clients/logo-alenkosa-icon.png";
 function Clients({ clients, projects }) {
 	const { locale } = useTrans();
 	return /* @__PURE__ */ jsxs(PublicLayout, { children: [
@@ -66,9 +66,9 @@ function Clients({ clients, projects }) {
 						children: SECTORS.map((sector, i) => /* @__PURE__ */ jsxs("div", {
 							className: "group flex items-center gap-4 rounded-lg border border-ink/10 bg-white p-6 transition-colors duration-200 hover:border-ink/25 hover:shadow-lg hover:shadow-brand-600/10",
 							children: [/* @__PURE__ */ jsx("span", {
-								className: "icon-wrapper-sm",
+								className: "icon-wrapper icon-wrapper-sm",
 								children: /* @__PURE__ */ jsx("span", {
-									class: "material-symbols-outlined",
+									className: "material-symbols-outlined",
 									children: sector.icon
 								})
 							}), /* @__PURE__ */ jsx("span", {
@@ -89,21 +89,29 @@ function Clients({ clients, projects }) {
 								children: [clients.length === 0 && /* @__PURE__ */ jsx("p", {
 									className: "col-span-full rounded-lg border border-dashed border-ink/15 px-6 py-12 text-center text-ink/50",
 									children: locale === "en" ? "Client logotypes will appear here." : "Logo klien akan ditampilkan di sini."
-								}), clients.map((c) => /* @__PURE__ */ jsx("a", {
+								}), clients.map((c) => /* @__PURE__ */ jsxs("a", {
 									href: c.website || "#",
 									target: c.website ? "_blank" : void 0,
 									rel: "noreferrer",
-									className: "flex h-24 items-center justify-center rounded-lg border border-ink/10 bg-ink/[0.02] p-4 transition-colors duration-200 hover:border-ink/25",
-									children: c.logo ? /* @__PURE__ */ jsx("img", {
+									title: c.name,
+									className: "flex h-32 flex-col items-center justify-center gap-2 rounded-xl border border-ink/10 bg-white p-4 text-center transition-all duration-200 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-lg hover:shadow-brand-600/10",
+									children: [c.logo ? /* @__PURE__ */ jsx("img", {
 										src: `/storage/${c.logo}`,
 										alt: c.name,
 										loading: "lazy",
 										decoding: "async",
-										className: "max-h-12 max-w-[70%] object-contain grayscale transition-all hover:grayscale-0"
-									}) : /* @__PURE__ */ jsx("span", {
-										className: "text-center text-sm font-semibold text-ink/50",
+										className: "max-h-12 max-w-[70%] object-contain"
+									}) : /* @__PURE__ */ jsx("img", {
+										src: FALLBACK_CLIENT_LOGO,
+										alt: "",
+										"aria-hidden": "true",
+										loading: "lazy",
+										decoding: "async",
+										className: "h-11 w-11 rounded-lg border border-ink/10 object-contain p-1"
+									}), /* @__PURE__ */ jsx("span", {
+										className: "line-clamp-2 text-center text-xs font-bold leading-snug text-ink/70",
 										children: c.name
-									})
+									})]
 								}, c.id))]
 							})]
 						})
@@ -193,4 +201,4 @@ function Clients({ clients, projects }) {
 //#endregion
 export { Clients as default };
 
-//# sourceMappingURL=Clients-BQjJ2_gC.js.map
+//# sourceMappingURL=Clients-BvOE9BfS.js.map

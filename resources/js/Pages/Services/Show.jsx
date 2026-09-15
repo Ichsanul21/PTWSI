@@ -5,7 +5,6 @@ import Reveal from '../../Components/ui/Reveal'
 import Seo from '../../Components/Seo'
 import SectionHeading from '../../Components/ui/SectionHeading'
 import ServiceIcon from '../../Components/ui/ServiceIcon'
-import Button from '../../Components/ui/Button'
 import BlinkDot from '../../Components/ui/BlinkDot'
 import { SERVICE_IMAGES, INSIGHT_IMAGES, alt } from '../../Components/ui/media'
 import { useTrans, localizedPath } from '../../hooks/useTrans'
@@ -148,26 +147,6 @@ export default function ServiceShow({ service, related }) {
                     </div>
                 </section>
             )}
-
-            <section className="relative overflow-hidden border-t border-ink/10">
-                <div className="absolute inset-0 cta-gradient" />
-                <div className="absolute inset-0 dot-grid" />
-                <div className="container-site relative pb-24 lg:pb-32">
-                    <Reveal>
-                        <div className="flex flex-col gap-6 rounded-2xl p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
-                            <div className="relative z-10">
-                                <h2 className="text-2xl font-bold sm:text-3xl">{t('common.cta_quote')}</h2>
-                                <p className="mt-2 text-white/75">
-                                    {locale === 'en' ? 'Tell us your testing needs. We reply within 24 hours.' : 'Ceritakan kebutuhan pengujian Anda. Kami balas dalam 1×24 jam.'}
-                                </p>
-                            </div>
-                            <Button href={buildHref('/kontak') + '#lead'} variant="light" size="lg" className="shrink-0 self-start lg:self-auto">
-                                {locale === 'en' ? 'Contact the Lab Team' : 'Hubungi Tim Lab'}
-                            </Button>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
         </PublicLayout>
     )
 }
