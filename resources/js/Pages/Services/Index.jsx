@@ -21,14 +21,14 @@ export default function ServicesIndex({ services }) {
                 lead={locale === 'en' ? 'Every division runs on accountable standards: SNI, ASTM, AASHTO, JIS and ISRM.' : 'Setiap divisi berjalan dengan standar yang dapat dipertanggungjawabkan: SNI, ASTM, AASHTO, JIS dan ISRM.'}
             />
 
-            <section className="section-pad border-t border-ink/10 bg-white">
+            <section className="section-pad section-gradient-subtle border-t border-ink/10">
                 <div className="container-site">
                     <div className="border-t border-ink/10">
                         {services.map((s, i) => (
                             <Reveal key={s.slug} delay={i * 80}>
                                 <Link
                                     href={buildHref(`/layanan/${s.slug}`)}
-                                    className="group grid items-center gap-5 border-b border-ink/10 py-8 transition-colors duration-200 hover:bg-ink/[0.02] sm:py-10 lg:grid-cols-12"
+                                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-xl sm:py-10 lg:grid-cols-12"
                                 >
                                     <span className="font-mono text-sm text-ink/35 lg:col-span-1">
                                         {String(i + 1).padStart(2, '0')}
@@ -58,7 +58,7 @@ export default function ServicesIndex({ services }) {
                     </div>
 
                     <Reveal delay={160}>
-                        <div className="mt-14 flex flex-col gap-6 rounded-lg bg-brand-600 p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="mt-14 flex flex-col gap-6 rounded-2xl cta-gradient p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
                             <div>
                                 <h2 className="text-2xl font-bold sm:text-3xl">
                                     {locale === 'en' ? 'Cannot find the method you need?' : 'Tidak menemukan metode yang Anda butuhkan?'}

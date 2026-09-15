@@ -6,7 +6,14 @@ import PageHero from '../Components/ui/PageHero'
 import { PROJECT_FALLBACKS } from '../Components/ui/media'
 import { useTrans } from '../hooks/useTrans'
 
-const SECTORS = ['Pertambangan', 'Konstruksi', 'Infrastruktur & Jalan', 'Bendungan / Dam', 'Energi & Pembangkit', 'IKN']
+const SECTORS = [
+    { key: 'mining', label_id: 'Pertambangan', label_en: 'Mining', icon: 'mining' },
+    { key: 'construction', label_id: 'Konstruksi', label_en: 'Construction', icon: 'construction' },
+    { key: 'infrastructure', label_id: 'Infrastruktur & Jalan', label_en: 'Infrastructure & Roads', icon: 'directions_rail' },
+    { key: 'dam', label_id: 'Bendungan / Dam', label_en: 'Dams', icon: 'water_dam' },
+    { key: 'energy', label_id: 'Energi & Pembangkit', label_en: 'Energy & Power Plants', icon: 'electric_bolt' },
+    { key: 'ikn', label_id: 'IKN', label_en: 'IKN', icon: 'location_city' },
+]
 
 export default function Clients({ clients, projects }) {
     const { locale } = useTrans()
@@ -20,17 +27,17 @@ export default function Clients({ clients, projects }) {
                 lead={locale === 'en' ? 'We serve companies across sectors that demand certainty in soil, rock and environmental testing quality.' : 'Kami melayani perusahaan di berbagai sektor yang membutuhkan kepastian kualitas pengujian tanah, batuan dan lingkungan.'}
             />
 
-            <section className="section-pad border-t border-ink/10 bg-white">
+            <section className="section-pad section-gradient-subtle border-t border-ink/10">
                 <div className="container-site">
                     <Reveal>
                         <SectionHeading eyebrow={locale === 'en' ? 'Sectors' : 'Sektor'} title={locale === 'en' ? 'Who we serve' : 'Yang kami layani'} />
                         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                             {SECTORS.map((sector, i) => (
-                                <div key={sector} className="group flex items-center gap-4 rounded-lg border border-ink/10 bg-white p-6 transition-colors duration-200 hover:border-ink/25">
-                                    <span className="font-mono text-sm text-brand-600">
-                                        {String(i + 1).padStart(2, '0')}
+                                <div key={sector.key} className="group flex items-center gap-4 rounded-lg border border-ink/10 bg-white p-6 transition-colors duration-200 hover:border-ink/25 hover:shadow-lg hover:shadow-brand-600/10">
+                                    <span className="icon-wrapper-sm">
+                                        <span class="material-symbols-outlined">{sector.icon}</span>
                                     </span>
-                                    <span className="text-xl font-bold text-ink">{sector}</span>
+                                    <span className="text-xl font-bold text-ink">{locale === 'en' ? sector.label_en : sector.label_id}</span>
                                 </div>
                             ))}
                         </div>

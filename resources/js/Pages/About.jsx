@@ -74,16 +74,20 @@ export default function About({ services }) {
                 </div>
             </section>
 
-            <section className="section-pad border-t border-ink/10 bg-white">
+            <section className="section-pad section-gradient-subtle border-t border-ink/10">
                 <div className="container-site">
                     <SectionHeading eyebrow={locale === 'en' ? 'Our values' : 'Nilai Kami'} title={locale === 'en' ? 'Principles behind every report' : 'Prinsip yang menopang setiap laporan'} />
                     <div className="mt-12 grid gap-5 md:grid-cols-3">
                         {VALUES.map((v, i) => (
                             <Reveal key={v.key} delay={i * 120}>
-                                <div className="h-full rounded-lg border border-ink/10 bg-white p-8 transition-colors duration-200 hover:border-ink/25 sm:p-10">
+                                <div className="h-full rounded-lg border border-ink/10 bg-white p-8 transition-colors duration-200 hover:border-ink/25 hover:shadow-lg hover:shadow-brand-600/10 sm:p-10">
                                     <div className="flex items-center justify-between">
                                         <span className="font-mono text-sm text-brand-600">{String(i + 1).padStart(2, '0')}</span>
-                                        <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
+                                        <span className="icon-wrapper">
+                                            {v.key === 'accuracy' && <span class="material-symbols-outlined">verified</span>}
+                                            {v.key === 'speed' && <span class="material-symbols-outlined">bolt</span>}
+                                            {v.key === 'integrity' && <span class="material-symbols-outlined">shield</span>}
+                                        </span>
                                     </div>
                                     <h3 className="mt-10 text-2xl font-bold text-ink">{v[`title_${locale}`]}</h3>
                                     <p className="mt-4 text-sm leading-relaxed text-ink/60">{v[`body_${locale}`]}</p>

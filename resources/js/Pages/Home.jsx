@@ -160,7 +160,7 @@ function Services({ services }) {
     const buildHref = (path) => localizedPath(locale, path)
 
     return (
-        <section className="section-pad bg-white">
+        <section className="section-pad section-gradient-subtle">
             <div className="container-site">
                 <Reveal>
                     <div className="flex flex-wrap items-end justify-between gap-6">
@@ -170,40 +170,43 @@ function Services({ services }) {
                         </Link>
                     </div>
                 </Reveal>
-                <div className="mt-12 border-t border-ink/10">
+                <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {services.map((s, i) => {
                         const name = s[`name_${locale}`] ?? s.name_id
                         const short = s[`short_${locale}`] ?? s.short_id
                         const imgSrc = s.cover_url || SERVICE_IMAGES[s.slug]?.src
                         const imgAlt = s.cover_url ? name : alt(SERVICE_IMAGES[s.slug], locale)
                         return (
-                            <Reveal key={s.slug} delay={i * 80}>
+                            <Reveal key={s.slug} delay={i * 100}>
                                 <Link
                                     href={buildHref(`/layanan/${s.slug}`)}
-                                    className="group grid items-center gap-5 border-b border-ink/10 py-8 transition-colors duration-200 hover:bg-ink/[0.02] sm:py-10 lg:grid-cols-12"
+                                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-xl"
                                 >
-                                    <span className="font-mono text-sm text-ink/35 lg:col-span-1">
-                                        {String(i + 1).padStart(2, '0')}
-                                    </span>
-                                    {imgSrc ? (
-                                        <img src={imgSrc} alt={imgAlt} loading="lazy" decoding="async" className="hidden h-12 w-12 rounded object-cover lg:col-span-1 lg:block" />
-                                    ) : (
-                                        <span className="hidden h-12 w-12 items-center justify-center rounded bg-ink/5 text-ink/70 transition-colors duration-200 group-hover:bg-brand-600 group-hover:text-white lg:col-span-1 lg:flex">
-                                            <ServiceIcon name={s.icon} className="h-6 w-6" />
-                                        </span>
-                                    )}
-                                    <span className="lg:col-span-8">
-                                        <span className="display-lg block transition-colors group-hover:text-brand-600">{name}</span>
-                                        <span className="mt-2 block max-w-2xl text-sm leading-relaxed text-ink/60">{short}</span>
-                                    </span>
-                                    <span className="flex items-center justify-between gap-4 lg:col-span-2 lg:justify-end">
+                                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                                        {imgSrc ? (
+                                            <img src={imgSrc} alt={imgAlt} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center bg-ink/5">
+                                                <ServiceIcon name={s.icon} className="h-12 w-12 text-ink/30" />
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4">
+                                            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/85">{s.standards}</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 flex-1 flex-col">
+                                        <span className="font-mono text-sm text-brand-600">{String(i + 1).padStart(2, '0')}</span>
+                                        <h3 className="mt-3 text-xl font-bold text-ink transition-colors group-hover:text-brand-600">{name}</h3>
+                                        <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/60">{short}</p>
+                                    </div>
+                                    <div className="pt-4 flex items-center justify-between">
                                         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">{s.standards}</span>
-                                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-200 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white">
-                                            <svg className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-300 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white">
+                                            <svg className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M5 12h14M13 6l6 6-6 6" />
                                             </svg>
                                         </span>
-                                    </span>
+                                    </div>
                                 </Link>
                             </Reveal>
                         )
@@ -408,6 +411,87 @@ function InsightsTeaser({ insights }) {
     )
 }
 
+function CtaBand() {
+    const { t, locale } = useTrans()
+    const buildHref = (path) => localizedPath(locale, path)
+    const site = usePage().props.site
+
+    return (
+        <section className="relative overflow-hidden" aria-labelledby="cta-heading">
+            <div className="absolute inset-0 cta-gradient" />
+            <div className="absolute inset-0 dot-grid" />
+            <div className="absolute inset-0">
+                <div className="floating-shape floating-shape-1" />
+                <div className="floating-shape floating-shape-2" />
+                <div className="floating-shape floating-shape-3" />
+            </div>
+            <div className="container-site relative pb-16 pt-16 lg:pb-24 lg:pt-24">
+                <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+                    <div className="relative max-w-xl">
+                        <Reveal>
+                            <p className="kicker text-white/70">{t('footer.question')}</p>
+                        </Reveal>
+                        <Reveal delay={100}>
+                            <h2 id="cta-heading" className="display-xl mt-4 font-bold text-white">
+                                {locale === 'en' ? 'Ready to start your testing project?' : 'Siap memulai proyek pengujian Anda?'}
+                            </h2>
+                        </Reveal>
+                        <Reveal delay={200}>
+                            <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
+                                {locale === 'en'
+                                    ? 'Tell us your soil, rock, or environmental testing needs. Our team responds within 24 hours on working days.'
+                                    : 'Ceritakan kebutuhan pengujian tanah, batuan, atau lingkungan Anda. Tim kami merespons dalam 1×24 jam pada jam kerja.'}
+                            </p>
+                        </Reveal>
+                        <Reveal delay={300}>
+                            <div className="mt-8 flex flex-wrap items-center gap-4">
+                                <Button href={buildHref('/kontak') + '#lead'} size="lg" variant="light">
+                                    {t('common.cta_quote')}
+                                </Button>
+                                <Button href={buildHref('/layanan')} size="lg" variant="underline">
+                                    {t('common.cta_services')}
+                                </Button>
+                            </div>
+                        </Reveal>
+                    </div>
+                    <div className="relative hidden lg:block">
+                        <Reveal delay={400}>
+                            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+                                <svg viewBox="0 0 384 384" className="w-full h-full text-white/10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#005ca5" stopOpacity="0.3"/>
+                                            <stop offset="100%" stopColor="#47a2d8" stopOpacity="0.1"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="192" cy="192" r="160" fill="url(#grad1)" />
+                                    <g opacity="0.5">
+                                        <path d="M192 80a112 112 0 1 1 0 224 112 112 0 0 1 0-224z" stroke="url(#grad1)" strokeWidth="2" fill="none" strokeDasharray="10,10" />
+                                        <circle cx="192" cy="192" r="70" fill="none" stroke="url(#grad1)" strokeWidth="1.5" />
+                                        <circle cx="192" cy="192" r="40" fill="url(#grad1)" />
+                                    </g>
+                                    <g transform="translate(192, 192)">
+                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
+                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
+                                    </g>
+                                    <g transform="translate(192, 192) rotate(120)">
+                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
+                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
+                                    </g>
+                                    <g transform="translate(192, 192) rotate(240)">
+                                        <path d="M0 -110 L0 -130" stroke="url(#grad1)" strokeWidth="2" strokeLinecap="round" />
+                                        <circle cx="0" cy="-140" r="4" fill="url(#grad1)" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </Reveal>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
 export default function Home({ services, menu, insights, clients }) {
     return (
         <PublicLayout>
@@ -420,6 +504,7 @@ export default function Home({ services, menu, insights, clients }) {
             <FieldStrip />
             <TestMenu menu={menu} />
             <InsightsTeaser insights={insights} />
+            <CtaBand />
         </PublicLayout>
     )
 }

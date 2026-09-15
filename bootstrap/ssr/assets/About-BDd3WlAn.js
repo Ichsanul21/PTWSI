@@ -94,7 +94,7 @@ function About({ services }) {
 			})
 		}),
 		/* @__PURE__ */ jsx("section", {
-			className: "section-pad border-t border-ink/10 bg-white",
+			className: "section-pad section-gradient-subtle border-t border-ink/10",
 			children: /* @__PURE__ */ jsxs("div", {
 				className: "container-site",
 				children: [/* @__PURE__ */ jsx(SectionHeading, {
@@ -105,14 +105,30 @@ function About({ services }) {
 					children: VALUES.map((v, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i * 120,
 						children: /* @__PURE__ */ jsxs("div", {
-							className: "h-full rounded-lg border border-ink/10 bg-white p-8 transition-colors duration-200 hover:border-ink/25 sm:p-10",
+							className: "h-full rounded-lg border border-ink/10 bg-white p-8 transition-colors duration-200 hover:border-ink/25 hover:shadow-lg hover:shadow-brand-600/10 sm:p-10",
 							children: [
 								/* @__PURE__ */ jsxs("div", {
 									className: "flex items-center justify-between",
 									children: [/* @__PURE__ */ jsx("span", {
 										className: "font-mono text-sm text-brand-600",
 										children: String(i + 1).padStart(2, "0")
-									}), /* @__PURE__ */ jsx("span", { className: "h-1.5 w-1.5 rounded-full bg-brand-600" })]
+									}), /* @__PURE__ */ jsxs("span", {
+										className: "icon-wrapper",
+										children: [
+											v.key === "accuracy" && /* @__PURE__ */ jsx("span", {
+												class: "material-symbols-outlined",
+												children: "verified"
+											}),
+											v.key === "speed" && /* @__PURE__ */ jsx("span", {
+												class: "material-symbols-outlined",
+												children: "bolt"
+											}),
+											v.key === "integrity" && /* @__PURE__ */ jsx("span", {
+												class: "material-symbols-outlined",
+												children: "shield"
+											})
+										]
+									})]
 								}),
 								/* @__PURE__ */ jsx("h3", {
 									className: "mt-10 text-2xl font-bold text-ink",
@@ -153,4 +169,4 @@ function About({ services }) {
 //#endregion
 export { About as default };
 
-//# sourceMappingURL=About-D59yY12Y.js.map
+//# sourceMappingURL=About-BDd3WlAn.js.map

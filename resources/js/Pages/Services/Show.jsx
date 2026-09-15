@@ -149,11 +149,13 @@ export default function ServiceShow({ service, related }) {
                 </section>
             )}
 
-            <section className="border-t border-ink/10 bg-white pb-24 lg:pb-32">
-                <div className="container-site">
+            <section className="relative overflow-hidden border-t border-ink/10">
+                <div className="absolute inset-0 cta-gradient" />
+                <div className="absolute inset-0 dot-grid" />
+                <div className="container-site relative pb-24 lg:pb-32">
                     <Reveal>
-                        <div className="flex flex-col gap-6 rounded-lg bg-brand-600 p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
-                            <div>
+                        <div className="flex flex-col gap-6 rounded-2xl p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+                            <div className="relative z-10">
                                 <h2 className="text-2xl font-bold sm:text-3xl">{t('common.cta_quote')}</h2>
                                 <p className="mt-2 text-white/75">
                                     {locale === 'en' ? 'Tell us your testing needs. We reply within 24 hours.' : 'Ceritakan kebutuhan pengujian Anda. Kami balas dalam 1×24 jam.'}

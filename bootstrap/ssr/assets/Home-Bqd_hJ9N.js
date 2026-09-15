@@ -306,7 +306,7 @@ function Services({ services }) {
 	const { t, locale } = useTrans();
 	const buildHref = (path) => localizedPath(locale, path);
 	return /* @__PURE__ */ jsx("section", {
-		className: "section-pad bg-white",
+		className: "section-pad section-gradient-subtle",
 		children: /* @__PURE__ */ jsxs("div", {
 			className: "container-site",
 			children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("div", {
@@ -320,54 +320,66 @@ function Services({ services }) {
 					children: t("common.see_all")
 				})]
 			}) }), /* @__PURE__ */ jsx("div", {
-				className: "mt-12 border-t border-ink/10",
+				className: "mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3",
 				children: services.map((s, i) => {
 					const name = s[`name_${locale}`] ?? s.name_id;
 					const short = s[`short_${locale}`] ?? s.short_id;
 					const imgSrc = s.cover_url || SERVICE_IMAGES[s.slug]?.src;
 					const imgAlt = s.cover_url ? name : alt(SERVICE_IMAGES[s.slug], locale);
 					return /* @__PURE__ */ jsx(Reveal, {
-						delay: i * 80,
+						delay: i * 100,
 						children: /* @__PURE__ */ jsxs(Link, {
 							href: buildHref(`/layanan/${s.slug}`),
-							className: "group grid items-center gap-5 border-b border-ink/10 py-8 transition-colors duration-200 hover:bg-ink/[0.02] sm:py-10 lg:grid-cols-12",
+							className: "group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-xl",
 							children: [
-								/* @__PURE__ */ jsx("span", {
-									className: "font-mono text-sm text-ink/35 lg:col-span-1",
-									children: String(i + 1).padStart(2, "0")
-								}),
-								imgSrc ? /* @__PURE__ */ jsx("img", {
-									src: imgSrc,
-									alt: imgAlt,
-									loading: "lazy",
-									decoding: "async",
-									className: "hidden h-12 w-12 rounded object-cover lg:col-span-1 lg:block"
-								}) : /* @__PURE__ */ jsx("span", {
-									className: "hidden h-12 w-12 items-center justify-center rounded bg-ink/5 text-ink/70 transition-colors duration-200 group-hover:bg-brand-600 group-hover:text-white lg:col-span-1 lg:flex",
-									children: /* @__PURE__ */ jsx(ServiceIcon, {
-										name: s.icon,
-										className: "h-6 w-6"
-									})
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "lg:col-span-8",
-									children: [/* @__PURE__ */ jsx("span", {
-										className: "display-lg block transition-colors group-hover:text-brand-600",
-										children: name
-									}), /* @__PURE__ */ jsx("span", {
-										className: "mt-2 block max-w-2xl text-sm leading-relaxed text-ink/60",
-										children: short
+								/* @__PURE__ */ jsxs("div", {
+									className: "relative aspect-[4/3] w-full overflow-hidden",
+									children: [imgSrc ? /* @__PURE__ */ jsx("img", {
+										src: imgSrc,
+										alt: imgAlt,
+										loading: "lazy",
+										decoding: "async",
+										className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+									}) : /* @__PURE__ */ jsx("div", {
+										className: "flex h-full w-full items-center justify-center bg-ink/5",
+										children: /* @__PURE__ */ jsx(ServiceIcon, {
+											name: s.icon,
+											className: "h-12 w-12 text-ink/30"
+										})
+									}), /* @__PURE__ */ jsx("div", {
+										className: "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4",
+										children: /* @__PURE__ */ jsx("span", {
+											className: "font-mono text-[11px] uppercase tracking-[0.14em] text-white/85",
+											children: s.standards
+										})
 									})]
 								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "flex items-center justify-between gap-4 lg:col-span-2 lg:justify-end",
+								/* @__PURE__ */ jsxs("div", {
+									className: "p-6 flex-1 flex-col",
+									children: [
+										/* @__PURE__ */ jsx("span", {
+											className: "font-mono text-sm text-brand-600",
+											children: String(i + 1).padStart(2, "0")
+										}),
+										/* @__PURE__ */ jsx("h3", {
+											className: "mt-3 text-xl font-bold text-ink transition-colors group-hover:text-brand-600",
+											children: name
+										}),
+										/* @__PURE__ */ jsx("p", {
+											className: "mt-2 flex-1 text-sm leading-relaxed text-ink/60",
+											children: short
+										})
+									]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "pt-4 flex items-center justify-between",
 									children: [/* @__PURE__ */ jsx("span", {
 										className: "font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40",
 										children: s.standards
 									}), /* @__PURE__ */ jsx("span", {
-										className: "flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-200 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white",
+										className: "flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-300 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white",
 										children: /* @__PURE__ */ jsx("svg", {
-											className: "h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5",
+											className: "h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5",
 											viewBox: "0 0 24 24",
 											fill: "none",
 											stroke: "currentColor",
@@ -617,6 +629,180 @@ function InsightsTeaser({ insights }) {
 		})
 	});
 }
+function CtaBand() {
+	const { t, locale } = useTrans();
+	const buildHref = (path) => localizedPath(locale, path);
+	usePage().props.site;
+	return /* @__PURE__ */ jsxs("section", {
+		className: "relative overflow-hidden",
+		"aria-labelledby": "cta-heading",
+		children: [
+			/* @__PURE__ */ jsx("div", { className: "absolute inset-0 cta-gradient" }),
+			/* @__PURE__ */ jsx("div", { className: "absolute inset-0 dot-grid" }),
+			/* @__PURE__ */ jsxs("div", {
+				className: "absolute inset-0",
+				children: [
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-1" }),
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-2" }),
+					/* @__PURE__ */ jsx("div", { className: "floating-shape floating-shape-3" })
+				]
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "container-site relative pb-16 pt-16 lg:pb-24 lg:pt-24",
+				children: /* @__PURE__ */ jsxs("div", {
+					className: "relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "relative max-w-xl",
+						children: [
+							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("p", {
+								className: "kicker text-white/70",
+								children: t("footer.question")
+							}) }),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 100,
+								children: /* @__PURE__ */ jsx("h2", {
+									id: "cta-heading",
+									className: "display-xl mt-4 font-bold text-white",
+									children: locale === "en" ? "Ready to start your testing project?" : "Siap memulai proyek pengujian Anda?"
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 200,
+								children: /* @__PURE__ */ jsx("p", {
+									className: "mt-6 max-w-lg text-lg leading-relaxed text-white/80",
+									children: locale === "en" ? "Tell us your soil, rock, or environmental testing needs. Our team responds within 24 hours on working days." : "Ceritakan kebutuhan pengujian tanah, batuan, atau lingkungan Anda. Tim kami merespons dalam 1×24 jam pada jam kerja."
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 300,
+								children: /* @__PURE__ */ jsxs("div", {
+									className: "mt-8 flex flex-wrap items-center gap-4",
+									children: [/* @__PURE__ */ jsx(Button, {
+										href: buildHref("/kontak") + "#lead",
+										size: "lg",
+										variant: "light",
+										children: t("common.cta_quote")
+									}), /* @__PURE__ */ jsx(Button, {
+										href: buildHref("/layanan"),
+										size: "lg",
+										variant: "underline",
+										children: t("common.cta_services")
+									})]
+								})
+							})
+						]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "relative hidden lg:block",
+						children: /* @__PURE__ */ jsx(Reveal, {
+							delay: 400,
+							children: /* @__PURE__ */ jsx("div", {
+								className: "relative w-80 h-80 lg:w-96 lg:h-96",
+								children: /* @__PURE__ */ jsxs("svg", {
+									viewBox: "0 0 384 384",
+									className: "w-full h-full text-white/10",
+									fill: "none",
+									xmlns: "http://www.w3.org/2000/svg",
+									children: [
+										/* @__PURE__ */ jsx("defs", { children: /* @__PURE__ */ jsxs("linearGradient", {
+											id: "grad1",
+											x1: "0%",
+											y1: "0%",
+											x2: "100%",
+											y2: "100%",
+											children: [/* @__PURE__ */ jsx("stop", {
+												offset: "0%",
+												stopColor: "#005ca5",
+												stopOpacity: "0.3"
+											}), /* @__PURE__ */ jsx("stop", {
+												offset: "100%",
+												stopColor: "#47a2d8",
+												stopOpacity: "0.1"
+											})]
+										}) }),
+										/* @__PURE__ */ jsx("circle", {
+											cx: "192",
+											cy: "192",
+											r: "160",
+											fill: "url(#grad1)"
+										}),
+										/* @__PURE__ */ jsxs("g", {
+											opacity: "0.5",
+											children: [
+												/* @__PURE__ */ jsx("path", {
+													d: "M192 80a112 112 0 1 1 0 224 112 112 0 0 1 0-224z",
+													stroke: "url(#grad1)",
+													strokeWidth: "2",
+													fill: "none",
+													strokeDasharray: "10,10"
+												}),
+												/* @__PURE__ */ jsx("circle", {
+													cx: "192",
+													cy: "192",
+													r: "70",
+													fill: "none",
+													stroke: "url(#grad1)",
+													strokeWidth: "1.5"
+												}),
+												/* @__PURE__ */ jsx("circle", {
+													cx: "192",
+													cy: "192",
+													r: "40",
+													fill: "url(#grad1)"
+												})
+											]
+										}),
+										/* @__PURE__ */ jsxs("g", {
+											transform: "translate(192, 192)",
+											children: [/* @__PURE__ */ jsx("path", {
+												d: "M0 -110 L0 -130",
+												stroke: "url(#grad1)",
+												strokeWidth: "2",
+												strokeLinecap: "round"
+											}), /* @__PURE__ */ jsx("circle", {
+												cx: "0",
+												cy: "-140",
+												r: "4",
+												fill: "url(#grad1)"
+											})]
+										}),
+										/* @__PURE__ */ jsxs("g", {
+											transform: "translate(192, 192) rotate(120)",
+											children: [/* @__PURE__ */ jsx("path", {
+												d: "M0 -110 L0 -130",
+												stroke: "url(#grad1)",
+												strokeWidth: "2",
+												strokeLinecap: "round"
+											}), /* @__PURE__ */ jsx("circle", {
+												cx: "0",
+												cy: "-140",
+												r: "4",
+												fill: "url(#grad1)"
+											})]
+										}),
+										/* @__PURE__ */ jsxs("g", {
+											transform: "translate(192, 192) rotate(240)",
+											children: [/* @__PURE__ */ jsx("path", {
+												d: "M0 -110 L0 -130",
+												stroke: "url(#grad1)",
+												strokeWidth: "2",
+												strokeLinecap: "round"
+											}), /* @__PURE__ */ jsx("circle", {
+												cx: "0",
+												cy: "-140",
+												r: "4",
+												fill: "url(#grad1)"
+											})]
+										})
+									]
+								})
+							})
+						})
+					})]
+				})
+			})
+		]
+	});
+}
 function Home({ services, menu, insights, clients }) {
 	return /* @__PURE__ */ jsxs(PublicLayout, { children: [
 		/* @__PURE__ */ jsx(Head, { children: /* @__PURE__ */ jsx("title", { children: "PT Wall Street Indonesia | Laboratorium Tanah, Batuan & Lingkungan" }) }),
@@ -627,10 +813,11 @@ function Home({ services, menu, insights, clients }) {
 		/* @__PURE__ */ jsx(ClientMarquee, { clients }),
 		/* @__PURE__ */ jsx(FieldStrip, {}),
 		/* @__PURE__ */ jsx(TestMenu, { menu }),
-		/* @__PURE__ */ jsx(InsightsTeaser, { insights })
+		/* @__PURE__ */ jsx(InsightsTeaser, { insights }),
+		/* @__PURE__ */ jsx(CtaBand, {})
 	] });
 }
 //#endregion
 export { Home as default };
 
-//# sourceMappingURL=Home-CwLk0IPR.js.map
+//# sourceMappingURL=Home-Bqd_hJ9N.js.map
